@@ -21,6 +21,9 @@ resizeGame()
 
 
 
+window.addEventListener("keydown", (event) => {
+    house1.x += 5;
+});
 
 
 
@@ -29,9 +32,9 @@ resizeGame()
 
 if (house1.getAttribute("house") == 1) {
     house1.style.fontSize = "5em";
-    house1.x = 5
+    house1.x = 5;
 
-    console.log(house1.y)
+    console.log(house1.y);
 }
 
 
