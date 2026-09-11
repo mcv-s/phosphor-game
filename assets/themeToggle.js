@@ -16,6 +16,11 @@ themeToggle.innerHTML = `
         <path
             d="M233.54,142.23a8,8,0,0,0-8-2,88.08,88.08,0,0,1-109.8-109.8,8,8,0,0,0-10-10,104.84,104.84,0,0,0-52.91,37A104,104,0,0,0,136,224a103.09,103.09,0,0,0,62.52-20.88,104.84,104.84,0,0,0,37-52.91A8,8,0,0,0,233.54,142.23ZM188.9,190.34A88,88,0,0,1,65.66,67.11a89,89,0,0,1,31.4-26A106,106,0,0,0,96,56,104.11,104.11,0,0,0,200,160a106,106,0,0,0,14.92-1.06A89,89,0,0,1,188.9,190.34Z" />
     </svg>
+
+    <svg class="theme-icon system-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" aria-hidden="true">
+        <path
+            d="M208,40H48A24,24,0,0,0,24,64V176a24,24,0,0,0,24,24H208a24,24,0,0,0,24-24V64A24,24,0,0,0,208,40Zm8,136a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V64a8,8,0,0,1,8-8H208a8,8,0,0,1,8,8Zm-48,48a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h64A8,8,0,0,1,168,224Z" />
+    </svg>
 `;
 
 
@@ -61,6 +66,41 @@ themeStyle.textContent = `
         fill: currentColor;
     }
 
+    .system-icon {
+        display: none;
+    }
+
+    /* System theme */
+
+    :root:not([data-theme]) .sun-icon,
+    :root:not([data-theme]) .moon-icon {
+        display: none;
+    }
+
+    :root:not([data-theme]) .system-icon {
+        display: block;
+    }
+
+
+    /* Explicit theme choices */
+
+    :root[data-theme="dark"] .sun-icon {
+        display: block;
+    }
+
+    :root[data-theme="dark"] .moon-icon,
+    :root[data-theme="dark"] .system-icon {
+        display: none;
+    }
+
+    :root[data-theme="light"] .sun-icon,
+    :root[data-theme="light"] .system-icon {
+        display: none;
+    }
+
+    :root[data-theme="light"] .moon-icon {
+        display: block;
+    }
 
     /* Default icon */
 
@@ -111,10 +151,15 @@ document.body.appendChild(themeToggle);
 const savedTheme =
     localStorage.getItem("markdown-editor-theme");
 
-if (savedTheme) {
+if (savedTheme && savedTheme !== "system") {
     document.documentElement.dataset.theme =
         savedTheme;
 }
+
+themeToggle.setAttribute(
+    "data-tooltip",
+    savedTheme || "System"
+);
 
 
 // Toggle theme
@@ -123,35 +168,46 @@ themeToggle.addEventListener("click", () => {
     const current =
         document.documentElement.dataset.theme;
 
-    const systemDark =
-        window.matchMedia(
-            "(prefers-color-scheme: dark)"
-        ).matches;
+    let next;
 
-    const isDark =
-        current
-            ? current === "dark"
-            : systemDark;
+    if (current === "light") {
+        next = "dark";
+    } else if (current === "dark") {
+        next = "system";
+    } else {
+        next = "light";
+    }
 
-    const next =
-        isDark
-            ? "light"
-            : "dark";
 
-    const setText =
-        isDark
-            ? "Dark Mode"
-            : "Light Mode";
+    if (next === "system") {
 
-    document.documentElement.dataset.theme = next;
+        document.documentElement.removeAttribute("data-theme");
 
-    themeToggle.setAttribute(
-        "data-tooltip",
-        setText
-    );
+        themeToggle.setAttribute(
+            "data-tooltip",
+            "System"
+        );
 
-    localStorage.setItem(
-        "markdown-editor-theme",
-        next
-    );
+        localStorage.setItem(
+            "markdown-editor-theme",
+            "system"
+        );
+
+    } else {
+
+        document.documentElement.dataset.theme =
+            next;
+
+        themeToggle.setAttribute(
+            "data-tooltip",
+            next === "dark"
+                ? "Dark Mode"
+                : "Light Mode"
+        );
+
+        localStorage.setItem(
+            "markdown-editor-theme",
+            next
+        );
+    }
 });
