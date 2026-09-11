@@ -12,9 +12,10 @@
 
     <title>Main Game (In progress)</title>
 
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link rel="stylesheet" href="assets/themeStyles.css">
     <link rel="stylesheet" href="styles.css">
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
 
 
 
@@ -29,17 +30,28 @@
 <style>
     body {
         height: 100vh;
-        display: grid;
-        place-items: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: var(--bg);
+        overflow: hidden;
+    }
+
+    .game-window {
+        width: 1280px;
+        height: 720px;
+        background: var(--surface);
+        overflow: hidden;
     }
 
     [gameObject] {
-        position: absolute;
-        left: 75%;
-        top: 50%;
+        position: relative;
+        left: 0px;
+        top: 0px;
     }
 
-    [house] {}
+
 </style>
 
 
@@ -51,23 +63,20 @@
 
 
 <body>
+    <div class="game-window" card>
 
-    <div class="main-card" card data-tooltip="Site">
 
-        Hi and welcome to the site
 
-        <div>He</div>
+
+        <i class="ph ph-square" id="main-city" gameObject house=1></i>
+        <i class="ph ph-square" id="main-city" gameObject house=2></i>
+
+
+
+
+
+
     </div>
-
-
-
-
-
-    <i class="ph ph-city" id="main-city" gameObject house=1></i>
-
-
-
-
 </body>
 
 
@@ -79,8 +88,13 @@
 
 
 
-<script src="assets/themeToggle.js"></script>
+
+
+
+
+
 <script src="assets/tooltips.js"></script>
+<script src="gameFunctions.js"></script>
 <script src="program.js"></script>
 
 
