@@ -10,15 +10,18 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Index HTML File</title>
-
+    <title>Main Game (In progress)</title>
 
     <link rel="stylesheet" href="assets/themeStyles.css">
     <link rel="stylesheet" href="styles.css">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
 
+
 </head>
+
+
+
 
 
 
@@ -30,17 +33,18 @@
         place-items: center;
     }
 
-    [card] {
-        background: var(--surface);
-        border: 1px var(--border) solid;
-        border-radius: 20px;
-        padding: 15px 15px 15px 15px;
-        display: flex;
-        flex-direction: row;
-        gap: 15px;
-
+    [gameObject] {
+        position: absolute;
+        left: 75%;
+        top: 50%;
     }
+
+    [house] {}
 </style>
+
+
+
+
 
 
 
@@ -59,12 +63,25 @@
 
 
 
+    <i class="ph ph-city" id="main-city" gameObject house=1></i>
+
+
 
 
 </body>
 
 
+
+
+
+
+
+
+
+
 <script src="assets/themeToggle.js"></script>
 <script src="assets/tooltips.js"></script>
+<script src="program.js"></script>
+
 
 </html>
