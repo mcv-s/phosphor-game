@@ -2,6 +2,7 @@
 
 const house1 = document.querySelector("[house]");
 const gameWindow = document.querySelector(".game-window");
+const buildings = document.querySelectorAll("[building]");
 
 const mouseFollowDefault = document.querySelector(".follow-mouse");
 let mouseFollow = mouseFollowDefault;
@@ -35,11 +36,16 @@ function resizeGame() {
     gameWindow.style.scale = Math.min(window.innerWidth / gameWidth, window.innerHeight / gameHeight) * 1;
 };
 
+const dist = (element1, element2) => {
+    return Math.sqrt(Math.pow(element1.x - element2.x, 2) + Math.pow(element1.y - element2.y, 2));
+}
+
 const makeElement = (icon, id, x, y, scale = 1) => {
     const element = document.createElement("i");
     element.className = "ph ph-" + icon;
     element.id = id;
     element.setAttribute("gameObject", "");
+    element.setAttribute("building", "");
 
     gameWindow.appendChild(element);
     Object.defineProperty(element, "x", {
@@ -76,8 +82,17 @@ window.addEventListener("click", (event) => {
         objectcount++;
     }
     if (event.target.hasAttribute("gameObject")) {
-        console.log(event.target.id);
+        let object = event.target;
+        console.log(object.id);
         mouseFollow = mouseFollowDefault;
+        console.log(buildings);
+        for (let i = 0; i < buildings.length; i++) {
+            let object2 = buildings[i];
+            console.log('inside loop');
+            if (object2.hasAttribute('building') && object2.id !== object.id) {
+                console.log('close to' + object2); //dist(object, object2)<100 && 
+            }
+        }
     }
 });
 
