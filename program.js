@@ -6,8 +6,6 @@ const gameWindow = document.querySelector(".game-window");
 const mouseFollow = document.querySelector(".follow-mouse");
 
 
-
-
 const gameWidth = 1280
 const gameHeight = 720
 
@@ -19,6 +17,8 @@ const gameHeight = 720
 
 let gameMouseX = 0;
 let gameMouseY = 0;
+
+
 
 window.addEventListener("mousemove", (event) => {
 
@@ -54,8 +54,6 @@ resizeGame()
 
 
 
-
-
 if (house1.getAttribute("house") == 1) {
     house1.style.fontSize = "5em";
     house1.x = 5;
@@ -78,12 +76,13 @@ function gameLoop() {
     mouseFollow.x += (gameMouseX - mouseFollow.x) / 10;
     mouseFollow.y += (gameMouseY - 50 - mouseFollow.y) / 10;
 
+
+
+    // Must 
     requestAnimationFrame(gameLoop);
 }
 
 gameLoop();
-
-
 
 
 
