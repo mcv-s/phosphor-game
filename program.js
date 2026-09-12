@@ -4,6 +4,8 @@
 // Object selectors
 
 const gameWindow = document.querySelector(".game-window");
+const buildings = document.querySelectorAll("[building]");
+
 const mouseFollowDefault = document.querySelector(".follow-mouse");
 const buildMenu = document.querySelector(".build-menu");
 
@@ -53,6 +55,10 @@ window.addEventListener("mousemove", (event) => {
 function resizeGame() {
     gameWindow.style.scale = Math.min(window.innerWidth / gameWidth, window.innerHeight / gameHeight) * 1;
 };
+
+const dist = (element1, element2) => {
+    return Math.sqrt(Math.pow(element1.x - element2.x, 2) + Math.pow(element1.y - element2.y, 2));
+}
 
 // Update the game window size
 window.addEventListener("resize", (event) => {
@@ -139,7 +145,8 @@ window.addEventListener("click", (event) => {
         objectcount++;
     }
     if (event.target.hasAttribute("gameObject")) {
-        console.log(event.target.id);
+        let object = event.target;
+        console.log(object.id);
         mouseFollow = mouseFollowDefault;
     }
 });
