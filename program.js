@@ -3,8 +3,8 @@
 const house1 = document.querySelector("[house]");
 const gameWindow = document.querySelector(".game-window");
 
-let mouseFollow = document.querySelector(".follow-mouse");
-
+const mouseFollowDefault = document.querySelector(".follow-mouse");
+let mouseFollow = mouseFollowDefault;
 
 const gameWidth = 1280
 const gameHeight = 720
@@ -28,9 +28,6 @@ window.addEventListener("mousemove", (event) => {
     offsetAmountY = window.innerHeight - (gameWindow.style.scale * gameHeight);
     gameMouseX = (event.clientX - offsetAmountX / 2) / gameWindow.style.scale;
     gameMouseY = (event.clientY - offsetAmountY / 2) / gameWindow.style.scale;
-
-        house1.x = gameMouseX;
-    house1.y = gameMouseY;
 });
 
 
@@ -72,10 +69,15 @@ const makeElement = (icon, id, x, y, scale = 1) => {
 //click detection
 window.addEventListener("click", (event) => {
     // building building if the build icon is clicked
+    //console.log(event.target);
     if (event.target.hasAttribute("buildIcon")) {
         console.log(event.target.id);
-        mouseFollow = makeElement(event.target.id, objectcount, gameMouseX, gameMouseY, 1);
+        mouseFollow = makeElement(event.target.id, objectcount, gameMouseX, gameMouseY);
         objectcount++;
+    }
+    if (event.target.hasAttribute("gameObject")) {
+        console.log(event.target.id);
+        mouseFollow = mouseFollowDefault;
     }
 });
 
