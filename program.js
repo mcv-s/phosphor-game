@@ -4,7 +4,6 @@
 // Object selectors
 
 const gameWindow = document.querySelector(".game-window");
-const buildings = document.querySelectorAll("[building]");
 
 const mouseFollowDefault = document.querySelector(".follow-mouse");
 const buildMenu = document.querySelector(".build-menu");
@@ -115,6 +114,7 @@ const makeElement = (icon, id, x, y, scale = 1) => {
     element.className = "ph ph-" + icon;
     element.id = id;
     element.setAttribute("gameObject", "");
+    element.setAttribute("building", "");
 
     gameWindow.appendChild(element);
 
@@ -148,7 +148,25 @@ window.addEventListener("click", (event) => {
     if (event.target.hasAttribute("gameObject")) {
         let object = event.target;
         console.log(object.id);
-        mouseFollow = mouseFollowDefault;
+        const buildings = document.querySelectorAll("[building]");
+        let tclose = 0;
+        for (let i = 0; i < buildings.length; i++) {
+            let object2 = buildings[i];
+            if (dist(object, object2)<10 && object !== object2){
+                tclose = 1;
+                console.log('close')
+                break;
+            }
+        }
+        if (!tclose){
+            mouseFollow = mouseFollowDefault;
+            for (let i = 0; i < buildings.length; i++) {
+                let object2 = buildings[i];
+                if (dist(object, object2)<100 && object !== object2){
+                    //do something that 'connects' the objects
+                }
+            }
+        }
     }
 });
 
