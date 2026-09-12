@@ -1,15 +1,18 @@
-// References
 
-const house1 = document.querySelector("[house]");
+
+
+// Object selectors
+
 const gameWindow = document.querySelector(".game-window");
-
 const mouseFollowDefault = document.querySelector(".follow-mouse");
+const buildMenu = document.querySelector(".build-menu");
+
+
 let mouseFollow = mouseFollowDefault;
 
 const gameWidth = 1280
 const gameHeight = 720
 
-const rect = gameWindow.getBoundingClientRect();
 
 
 // --------------------------------------------------------------------------------
@@ -22,6 +25,10 @@ let objectcount = 0;
 
 
 
+
+
+
+
 window.addEventListener("mousemove", (event) => {
 
     offsetAmountX = window.innerWidth - (gameWindow.style.scale * gameWidth);
@@ -31,15 +38,46 @@ window.addEventListener("mousemove", (event) => {
 });
 
 
+
+
+
+
+
+
+
+
+// =================
+// Game Resizing
+// =================
+
 function resizeGame() {
     gameWindow.style.scale = Math.min(window.innerWidth / gameWidth, window.innerHeight / gameHeight) * 1;
 };
 
+// Update the game window size
+window.addEventListener("resize", (event) => {
+    resizeGame()
+});
+
+resizeGame()
 
 
 
-function initProperties(toInit) {
-    Object.defineProperty(toInit, "x", {
+
+
+
+
+
+
+
+
+// =================
+// Custom gameObject Properties
+// =================
+
+
+function initProperties(objectToInit) {
+    Object.defineProperty(objectToInit, "x", {
         get() {
             return parseFloat(this.style.left) || 0;
         },
@@ -48,7 +86,7 @@ function initProperties(toInit) {
         }
     });
 
-    Object.defineProperty(toInit, "y", {
+    Object.defineProperty(objectToInit, "y", {
         get() {
             return parseFloat(this.style.top) || 0;
         },
@@ -57,6 +95,13 @@ function initProperties(toInit) {
         }
     });
 }
+
+
+
+
+
+
+
 
 const makeElement = (icon, id, x, y, scale = 1) => {
     const element = document.createElement("i");
@@ -74,10 +119,20 @@ const makeElement = (icon, id, x, y, scale = 1) => {
 
 }
 
+
+
+
+
+
+
+
+
+
+
 //click detection
 window.addEventListener("click", (event) => {
     // building building if the build icon is clicked
-    //console.log(event.target);
+
     if (event.target.hasAttribute("buildIcon")) {
         console.log(event.target.id);
         mouseFollow = makeElement(event.target.id, objectcount, gameMouseX, gameMouseY);
@@ -89,32 +144,31 @@ window.addEventListener("click", (event) => {
     }
 });
 
-// Update the game window size
-window.addEventListener("resize", (event) => {
-    resizeGame()
+
+
+
+// =================
+// Build menu open/close
+// =================
+
+
+
+
+window.addEventListener("keypress", (event) => {
+    if (event.key === "m") {
+
+        console.log(buildMenu.y)
+        if (buildMenu.y === 630) {
+            buildMenu.y = 720;
+        } else {
+            buildMenu.y = 630;
+        };
+
+
+
+    }
 });
-
-resizeGame()
-
-
-// --------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-if (house1.getAttribute("house") == 1) {
-    house1.style.fontSize = "5em";
-    house1.x = 5;
-
-    console.log(house1.y);
-}
-
+ 
 
 
 
