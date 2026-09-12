@@ -20,7 +20,7 @@ buildMenuToggle.addEventListener("click", () => {
 toggleBuildMenu(0)
 
 function toggleBuildMenu(mode) {
-    if (buildMenu.y === 720 || mode===1) {
+    if (buildMenu.y === 720 || mode === 1) {
         buildMenu.y = 630;
         buildMenuToggle.y = 603;
         buildMenuToggle.innerHTML = '<i class="ph ph-x"></i>'
