@@ -8,6 +8,7 @@ const buildings = document.querySelectorAll("[building]");
 
 const mouseFollowDefault = document.querySelector(".follow-mouse");
 const buildMenu = document.querySelector(".build-menu");
+const buildMenuToggle = document.querySelector(".build-menu-toggle");
 
 
 let mouseFollow = mouseFollowDefault;
@@ -163,23 +164,28 @@ window.addEventListener("click", (event) => {
 
 window.addEventListener("keypress", (event) => {
     if (event.key === "m") {
-
-        console.log(buildMenu.y)
-        if (buildMenu.y === 720) {
-            buildMenu.y = 630;
-        } else {
-            buildMenu.y = 720;
-        };
-
-
-
+        toggleBuildMenu()
     }
+});
 
-    
+buildMenuToggle.addEventListener("click", () => {
+    toggleBuildMenu()
 });
 
 
+function toggleBuildMenu() {
+    console.log(buildMenu.y)
+    if (buildMenu.y === 720) {
+        buildMenu.y = 630;
+        buildMenuToggle.y = 603;
+        buildMenuToggle.innerHTML = '<i class="ph ph-x"></i>'
+    } else {
+        buildMenu.y = 720;
+        buildMenuToggle.y = 693;
+        buildMenuToggle.innerHTML = '<i class="ph ph-hammer"></i>'
+    };
 
+}
 
 
 

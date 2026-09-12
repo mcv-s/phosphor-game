@@ -23,6 +23,7 @@
     transition: all ease-in-out 0.2s;
 }
 
+
 .build-row {
     display: flex;
     flex-direction: row;
@@ -44,4 +45,5 @@
     background-color: rgb(124, 124, 124);
     border-radius: 5px 5px 0 0;
     cursor: pointer;
+    transition: all ease-in-out 0.2s;
 }
