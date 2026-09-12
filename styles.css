@@ -29,3 +29,19 @@
     padding: 10px;
     gap: 10px;
 }
+
+
+
+
+
+
+.build-menu-toggle {
+    top: 603px;
+    left: 1200px;
+    width: fit-content;
+    height: fit-content;
+    padding: 3px;
+    background-color: rgb(124, 124, 124);
+    border-radius: 5px 5px 0 0;
+    cursor: pointer;
+}
