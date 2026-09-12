@@ -35,14 +35,11 @@ function resizeGame() {
     gameWindow.style.scale = Math.min(window.innerWidth / gameWidth, window.innerHeight / gameHeight) * 1;
 };
 
-const makeElement = (icon, id, x, y, scale = 1) => {
-    const element = document.createElement("i");
-    element.className = "ph ph-" + icon;
-    element.id = id;
-    element.setAttribute("gameObject", "");
 
-    gameWindow.appendChild(element);
-    Object.defineProperty(element, "x", {
+
+
+function initProperties(toInit) {
+    Object.defineProperty(toInit, "x", {
         get() {
             return parseFloat(this.style.left) || 0;
         },
@@ -51,7 +48,7 @@ const makeElement = (icon, id, x, y, scale = 1) => {
         }
     });
 
-    Object.defineProperty(element, "y", {
+    Object.defineProperty(toInit, "y", {
         get() {
             return parseFloat(this.style.top) || 0;
         },
@@ -59,6 +56,17 @@ const makeElement = (icon, id, x, y, scale = 1) => {
             this.style.top = value + "px";
         }
     });
+}
+
+const makeElement = (icon, id, x, y, scale = 1) => {
+    const element = document.createElement("i");
+    element.className = "ph ph-" + icon;
+    element.id = id;
+    element.setAttribute("gameObject", "");
+
+    gameWindow.appendChild(element);
+
+    initProperties(element)
     element.x = x;
     element.y = y;
 
