@@ -163,7 +163,7 @@ window.addEventListener("click", (event) => {
 
 
 window.addEventListener("keypress", (event) => {
-    if (event.key === "m") {
+    if (event.key === "b") {
         toggleBuildMenu()
     }
 });
@@ -172,10 +172,10 @@ buildMenuToggle.addEventListener("click", () => {
     toggleBuildMenu()
 });
 
+toggleBuildMenu(0)
 
-function toggleBuildMenu() {
-    console.log(buildMenu.y)
-    if (buildMenu.y === 720) {
+function toggleBuildMenu(mode) {
+    if (buildMenu.y === 720 || mode===1) {
         buildMenu.y = 630;
         buildMenuToggle.y = 603;
         buildMenuToggle.innerHTML = '<i class="ph ph-x"></i>'
