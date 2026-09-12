@@ -42,17 +42,43 @@
         width: 1280px;
         height: 720px;
         background: var(--surface);
-        overflow: hidden;
+        overflow: show;
         position: absolute;
     }
 
     [gameObject] {
-        position: relative;
+        position: absolute;
         left: 0px;
         top: 0px;
     }
 
+    .build-menu {
+        background: #413e41;
+        width: 90%;
+        height: 100px;
+        left: 5%;
+        top: 85%;
+        display: flex;
+        flex-direction: row;
+    }
 
+    .build-row {
+        display: flex;
+        flex-direction: row;
+        padding-top: 10px;
+        padding-left: 10px;
+        gap: 10px;
+    }
+
+
+
+    [buildIcon] {
+        font-size: 50px;
+    }
+
+    .mouse-follow {
+        width: fit-content
+    }
 </style>
 
 
@@ -64,15 +90,25 @@
 
 
 <body>
-    <div class="game-window" card >
+    <div class="game-window" card>
 
+        <!-- Game objects 
+        <div class="build-menu" gameObject>
+            <row class="build-row">
+                <i class="ph ph-square" id="square" buildIcon></i>
+                <i class="ph ph-house" id="house" buildIcon></i>
+                <i class="ph ph-book" id="book" buildIcon></i>
+                <i class="ph ph-triangle" id="triangle" buildIcon></i>
+            </row>
+        </div>
 
-
-
-        <i class="ph ph-square" id="main-city" gameObject house=1 ></i>
-
+        -->
         <div class="follow-mouse" gameObject>Follows the mouse</div>
         <i class="ph ph-square" id="main-city" gameObject house=2></i>
+
+
+        <i class="ph ph-square" id="main-city" gameObject house=1></i>
+
 
 
 
