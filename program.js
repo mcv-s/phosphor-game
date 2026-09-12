@@ -158,17 +158,17 @@ window.addEventListener("keypress", (event) => {
     if (event.key === "m") {
 
         console.log(buildMenu.y)
-        if (buildMenu.y === 630) {
-            buildMenu.y = 720;
-        } else {
+        if (buildMenu.y === 720) {
             buildMenu.y = 630;
+        } else {
+            buildMenu.y = 720;
         };
 
 
 
     }
 });
- 
+
 
 
 
